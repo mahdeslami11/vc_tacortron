@@ -9,8 +9,8 @@ hparams = tf.contrib.training.HParams(
 
   # Audio:
   num_mels=80,
-  num_freq=1025,
-  sample_rate=22050,
+  num_freq=800,
+  sample_rate=16000,
   frame_length_ms=50,
   frame_shift_ms=12.5,
   preemphasis=0.97,
@@ -18,7 +18,7 @@ hparams = tf.contrib.training.HParams(
   ref_level_db=20,
 
   # Model:
-  outputs_per_step=5,
+  outputs_per_step=2,
   prenet_depths=[256, 128],
   encoder_depth=256,
   postnet_depth=256,
@@ -26,7 +26,7 @@ hparams = tf.contrib.training.HParams(
   decoder_depth=256,
 
   # Training:
-  batch_size=8,
+  batch_size=64,
   adam_beta1=0.9,
   adam_beta2=0.999,
   initial_learning_rate=0.002,
@@ -34,8 +34,8 @@ hparams = tf.contrib.training.HParams(
   use_cmudict=False,  # Use CMUDict during training to learn pronunciation of ARPAbet phonemes
 
   # Eval:
-  max_iters=250,
-  griffin_lim_iters=60,
+  max_iters=230,
+  griffin_lim_iters=80,
   power=1.5,              # Power to raise magnitudes to prior to Griffin-Lim
 )
 

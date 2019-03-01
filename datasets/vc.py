@@ -5,11 +5,12 @@ import os
 from util import audio
 
 
-def build_from_path(in_dir_source, in_dir_target, out_dir, num_workers=1, tqdm=lambda x: x):
+def build_from_path(metas, in_dir, out_dir, num_workers=1, tqdm=lambda x: x):
   '''Preprocesses the LJ Speech dataset from a given input path into a given output directory.
 
     Args:
-      in_dir: The directory where you have downloaded the LJ Speech dataset
+      metas: list of metadata, like [[source_wav_path, target_wav_path], ...]
+      in_dir: The directory where you raw parallel corpus stored
       out_dir: The directory to write the output into
       num_workers: Optional number of worker processes to parallelize across
       tqdm: You can optionally pass tqdm to get a nice progress bar
@@ -23,19 +24,13 @@ def build_from_path(in_dir_source, in_dir_target, out_dir, num_workers=1, tqdm=l
   executor = ProcessPoolExecutor(max_workers=num_workers)
   futures = []
   index = 1
-  source_path = os.path.join(in_dir_source, 'wavs')
-  target_path = os.path.join(in_dir_target, 'wavs')
-  source_list=os.listdir(source_path)
-  target_list=os.listdir(target_path)
-  source_list.sort()
-  target_list.sort()
-  for i in range(0,len(source_list)):  
-    assert source_list[i] == target_list[i]
-    source_wav_path = os.path.join(source_path, source_list[i])
-    target_wav_path = os.path.join(target_path, target_list[i])
-    print('source: {}, target: {}'.format(source_wav_path, target_wav_path))
+
+  for m in metas:
+    source_wav_path = os.path.join(in_dir, m[0])
+    target_wav_path = os.path.join(in_dir, m[1])
     futures.append(executor.submit(partial(_process_utterance, out_dir, index, source_wav_path, target_wav_path)))
     index += 1
+
   return [future.result() for future in tqdm(futures)]
 
 

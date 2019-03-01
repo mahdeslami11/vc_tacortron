@@ -31,7 +31,7 @@ def run_eval(args):
   synth = Synthesizer()
   synth.load(args.checkpoint)
   base_path = get_output_base_path(args.checkpoint)
-  with open('eval.wav', 'wb') as f:
+  with open('{}-eval.wav'.format(args.ref.split('/')[-1].replace('.wav', '')), 'wb') as f:
     f.write(synth.synthesize(args.ref))
 
 
