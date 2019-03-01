@@ -19,16 +19,17 @@ python train.py
 ```
 
 ### Results
-#### Audio samples
+#### 1. Audio samples
+clb -> dbl
 ```
 ./samples
 ```
-#### Alignments
+#### 2. Alignments
 
 
 ## Reference
 
 * [Tacotron: Towards End-to-End Speech Synthesis](https://arxiv.org/pdf/1703.10135.pdf),
 
-
 * [keithito's tacotron implementation](https://github.com/keithito/tacotron)
+* [cmu_arctic dataset](http://festvox.org/cmu_arctic/)
