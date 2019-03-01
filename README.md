@@ -3,10 +3,12 @@
 Voice Conversion using Tacotron Model.
 
 ### Quick Start
-#### 1. Download dataset
+#### 1. Download dataset and Preprocess
 ```shell
 ./download_data.sh
+python preprocess.py
 ```
+
 
 #### 2. Training
 ``` shell
@@ -25,7 +27,7 @@ clb -> dbl
 ./samples
 ```
 #### 2. Alignments
-
+![alignments](https://github.com/vBaiCai/vc_tacotron/raw/master/figs/align.png)
 
 ## Reference
 
