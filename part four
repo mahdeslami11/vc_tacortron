@@ -1,0 +1,20 @@
+The Subjective evaluation and conclusion that we see in the evaluation of the output file:
+
+WaveNet (van den Oord et al., 2016) is a powerful generative model of audio.
+ It works well for TTS,but is slow due to its sample-level autoregressive nature.
+ also requires conditioning on linguisticfeatures from an existing TTS frontend, and thus is not end-to-end: it only replaces the vocoder and acoustic model.
+ Another recently-developed neural model is DeepVoice,
+ which replaces every component in a typical TTS pipeline by a corresponding neural network.
+ However,each component is independently trained,  and it’s nontrivial to change the system to train in an end-to-end fashion.
+ We use the Griffin-Lim algorithm to synthesize waveform from the predicted spectrogram.
+ We found that raising the predicted magnitudes by a power of 1.2 before feeding to Griffin-Lim reduces artifacts, likely due to its harmonic enhancement effect. 
+ We observed thatGriffin-Lim converges after 50 iterations ,, whichis reasonably fast
+ We implemented Griffin-Lim in TensorFlow hence it’s also part of the model.
+ While Griffin-Lim is differentiable  we do not impose any loss on it in this work.
+ We emphasize that our choice of Griffin-Lim is for simplicity;while it already yields strong results,
+ developing a fast and high-quality trainable spectrogram towaveform inverter is ongoing work.
+ We conduct a few ablation studies to understand the key components in our model.
+ As is common for generative models, it’s hard to compare models based on objective metrics,
+ which often do notcorrelate well with perception.
+ We mainly rely on visual comparisons instead.
+ We strongly encourage readers to listen to the provided samples.
