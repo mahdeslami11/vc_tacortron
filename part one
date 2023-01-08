@@ -9,7 +9,22 @@ University: Islamic Azad University, South Tehran branch
 Student No. : 40114140111020
 
 This is a summary of the project and the goal of the project :
+This is how I begin the description of my GitHub project:
+
+A text-to-speech synthesis system typically consists of multiple stages, 
+such as a text analysis frontend,
+an acoustic model and an audio synthesis module. 
+Building these components often requires extensive domain expertise ,
+and may contain brittle design choices.
+also we present Tacotron, an end-to-end generative text-to-speech model that synthesizes speech directly from characters.
+ Given<text, audio> pairs, the model can be trained completely from scratch with random initialization.
+So, We present several key techniques to make the sequence-tosequence framework perform well for this challenging task.
+Actually, Tacotron achieves a3.82 subjective 5-scale mean opinion score on US English, outperforming a production parametric system in terms of naturalness,
+In addition, since Tacotron,
+generates speech at the frame level, it’s substantially faster than sample-level autoregressive method.
+
 Explanation about the code and its function :
+
 import tensorflow as tf
 from tensorflow.contrib.rnn import GRUCell
 
